@@ -79,7 +79,7 @@ const Quiz = ({ questions, userId }: any) => {
           </button>
           <button
             onClick={() => updateUser(userId, score)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded m-2"
           >
             Submit Quiz
           </button>

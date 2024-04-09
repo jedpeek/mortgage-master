@@ -15,7 +15,6 @@ export async function createUser(user: any) {
 
 export async function updateUser(userId: any, score: any) {
   const filter = { clerkId: userId };
-  const update = { quiz_scores: score };
   try {
     await connect();
     const doc = await User.findOne(filter);
