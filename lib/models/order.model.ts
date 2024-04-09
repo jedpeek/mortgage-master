@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-const UserSchema = new Schema({
+const OrderSchema = new Schema({
   clerkId: {
     type: String,
     required: true,
@@ -26,11 +26,8 @@ const UserSchema = new Schema({
   lastName: {
     type: String,
   },
-  quiz_scores: {
-    type: Array,
-  },
 });
 
-const User = models?.User || model("User", UserSchema);
+const Order = models?.Order || model("Order", OrderSchema);
 
-export default User;
+export default Order;

@@ -1,7 +1,8 @@
 "use client";
+import { updateUser } from "@/lib/actions/user.action";
 import React, { useState } from "react";
 
-const Quiz = ({ questions }: any) => {
+const Quiz = ({ questions, userId }: any) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
@@ -75,6 +76,12 @@ const Quiz = ({ questions }: any) => {
             className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
           >
             Restart Quiz
+          </button>
+          <button
+            onClick={() => updateUser(userId, score)}
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          >
+            Submit Quiz
           </button>
         </>
       )}

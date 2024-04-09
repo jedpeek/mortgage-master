@@ -12,3 +12,14 @@ export async function createUser(user: any) {
     console.log(error);
   }
 }
+
+export async function updateUser(userId: any, score: any) {
+  try {
+    await connect();
+    const updatedUser = await User.findById(userId);
+    updatedUser.quiz_scores.push(score);
+    return JSON.parse(JSON.stringify(updatedUser));
+  } catch (error) {
+    console.log(error);
+  }
+}
