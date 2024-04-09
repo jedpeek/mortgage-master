@@ -1,9 +1,8 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import User from "../models/user.model";
 import { connect } from "@/lib/db";
-
+import { auth } from "@clerk/nextjs";
 export async function createUser(user: any) {
   try {
     await connect();
@@ -26,5 +25,19 @@ export async function updateUser(userId: any, score: any) {
   } catch (error) {
     console.log(error);
   }
-  redirect("/");
+}
+
+export async function addOrderToUser(order: any) {
+  const { userId } = auth();
+  const filter = { clerkId: userId };
+  try {
+    await connect();
+    const doc = await User.findOne(filter);
+    doc.orders.push(order);
+    await doc.save();
+
+    return JSON.parse(JSON.stringify(doc));
+  } catch (error) {
+    console.log(error);
+  }
 }

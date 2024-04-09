@@ -1,5 +1,6 @@
 "use client";
 import { updateUser } from "@/lib/actions/user.action";
+import { redirect } from "next/navigation";
 import React, { useState } from "react";
 
 const Quiz = ({ questions, userId }: any) => {

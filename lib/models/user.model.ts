@@ -27,6 +27,9 @@ const UserSchema = new Schema({
   quiz_scores: {
     type: Array,
   },
+  orders: {
+    type: Array,
+  },
 });
 
 const User = models?.User || model("User", UserSchema);

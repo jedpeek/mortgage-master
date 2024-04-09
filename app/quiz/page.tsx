@@ -1,14 +1,9 @@
 import Quiz from "@/components/quiz";
-import { questions } from "@/questions";
+import React from "react";
 import { auth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
-
-export default function Home() {
+import { questions } from "@/questions";
+const QuizPage = () => {
   const { userId } = auth();
-  // if (userId) {
-  //   redirect("/dashboard");
-  // }
-
   const getRandomItems = (array: any) => {
     const result = [];
     const arrayLength = array.length;
@@ -26,10 +21,11 @@ export default function Home() {
 
     return result;
   };
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Welcom to Mortgage Master</h1>
-    </main>
+    <div>
+      <Quiz questions={getRandomItems(questions)} userId={userId} />
+    </div>
   );
-}
+};
+
+export default QuizPage;
