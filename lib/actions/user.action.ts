@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import User from "../models/user.model";
 import { connect } from "@/lib/db";
 
@@ -25,4 +26,5 @@ export async function updateUser(userId: any, score: any) {
   } catch (error) {
     console.log(error);
   }
+  redirect("/");
 }
