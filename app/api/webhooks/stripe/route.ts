@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
 
 import { headers } from "next/headers";
 import { addOrderToUser } from "@/lib/actions/user.action";
-import { redirect } from "next/navigation";
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2023-10-16",
   typescript: true,
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       const checkoutSessionAsyncPaymentSucceeded = event.data.object;
 
       break;
-    case "checkout.session.completed":
+    case "checkout.session.completed" || "payment_intent.succeeded":
       const checkoutSessionCompleted: any = event.data.object;
       console.log("WE DID IT: ", checkoutSessionCompleted);
       addOrderToUser(checkoutSessionCompleted);
