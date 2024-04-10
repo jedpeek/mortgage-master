@@ -3,6 +3,7 @@ import { NextRequest } from "next/server";
 
 import { headers } from "next/headers";
 import { addOrderToUser } from "@/lib/actions/user.action";
+import { redirect } from "next/navigation";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2023-10-16",
   typescript: true,
@@ -10,7 +11,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(request: NextRequest) {
   const body = await request.text();
-  const endpointSecret = process.env.STRIPE_SECRET_WEBHOOK_KEY!;
+  // const endpointSecret = process.env.STRIPE_SECRET_WEBHOOK_KEY!;
+  const endpointSecret =
+    "whsec_00bafb57cf3844b585d2ccc7f6be40724c688bc0e211fb4c123d31bbf9317b99";
   const sig = headers().get("stripe-signature") as string;
   let event: Stripe.Event;
   try {
@@ -29,7 +32,7 @@ export async function POST(request: NextRequest) {
       const checkoutSessionAsyncPaymentSucceeded = event.data.object;
 
       break;
-    case "payment_intent.succeeded":
+    case "checkout.session.completed":
       const checkoutSessionCompleted: any = event.data.object;
       console.log("WE DID IT: ", checkoutSessionCompleted);
       addOrderToUser(checkoutSessionCompleted);

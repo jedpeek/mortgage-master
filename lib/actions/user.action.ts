@@ -28,8 +28,9 @@ export async function updateUser(userId: any, score: any) {
 }
 
 export async function addOrderToUser(order: any) {
-  const { userId } = auth();
-  const filter = { clerkId: userId };
+  const userEmail = order.customer_details.email;
+  console.log("THIS IS THE USER EMAIL: ", userEmail);
+  const filter = { email: userEmail };
   try {
     await connect();
     const doc = await User.findOne(filter);
