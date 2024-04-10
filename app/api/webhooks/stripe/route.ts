@@ -38,8 +38,9 @@ export async function POST(request: NextRequest) {
       break;
 
     case "payment_intent.succeeded":
-      console.log("WE DID IT: ", checkoutSessionCompleted);
-      addOrderToUser(checkoutSessionCompleted);
+      const paymentSucceeded: any = event.data.object;
+      console.log("WE DID IT: ", paymentSucceeded);
+      addOrderToUser(paymentSucceeded);
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);
