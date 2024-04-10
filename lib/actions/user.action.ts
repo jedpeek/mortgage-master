@@ -37,7 +37,7 @@ export async function addOrderToUser(orders: any) {
     doc.orders.push(orders);
     doc.active = true;
     await doc.save();
-
+    console.log(doc);
     return JSON.parse(JSON.stringify(doc));
   } catch (error) {
     console.log(error);
