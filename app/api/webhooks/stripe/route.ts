@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       const checkoutSessionCompleted: any = event.data.object;
 
       console.log("WE DID IT from CHECKOUT: ", checkoutSessionCompleted);
-      addOrderToUser(checkoutSessionCompleted);
+      await addOrderToUser(checkoutSessionCompleted);
       return new Response("Done", { status: 200 });
       break;
 
