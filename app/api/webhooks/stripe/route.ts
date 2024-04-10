@@ -29,11 +29,15 @@ export async function POST(request: NextRequest) {
       break;
     case "checkout.session.async_payment_succeeded":
       const checkoutSessionAsyncPaymentSucceeded = event.data.object;
-
       break;
     case "checkout.session.completed":
-    case "payment_intent.succeeded":
       const checkoutSessionCompleted: any = event.data.object;
+
+      console.log("WE DID IT: ", checkoutSessionCompleted);
+      addOrderToUser(checkoutSessionCompleted);
+      break;
+
+    case "payment_intent.succeeded":
       console.log("WE DID IT: ", checkoutSessionCompleted);
       addOrderToUser(checkoutSessionCompleted);
       break;
