@@ -27,14 +27,14 @@ export async function updateUser(userId: any, score: any) {
   }
 }
 
-export async function addOrderToUser(order: any) {
-  const userEmail = order.customer_details.email;
+export async function addOrderToUser(orders: any) {
+  const userEmail = orders.customer_details.email;
   console.log("THIS IS THE USER EMAIL: ", userEmail);
   const filter = { email: userEmail };
   try {
     await connect();
     const doc = await User.findOne(filter);
-    doc.orders.push(order);
+    doc.orders.push(orders);
     doc.active = true;
     await doc.save();
 

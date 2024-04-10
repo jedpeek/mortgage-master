@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
 
       console.log("WE DID IT from CHECKOUT: ", checkoutSessionCompleted);
       addOrderToUser(checkoutSessionCompleted);
+      return new Response("Done", { status: 200 });
       break;
 
     case "payment_intent.succeeded":
