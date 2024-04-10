@@ -31,7 +31,8 @@ export async function POST(request: NextRequest) {
       const checkoutSessionAsyncPaymentSucceeded = event.data.object;
 
       break;
-    case "checkout.session.completed" || "payment_intent.succeeded":
+    case "checkout.session.completed":
+    case "payment_intent.succeeded":
       const checkoutSessionCompleted: any = event.data.object;
       console.log("WE DID IT: ", checkoutSessionCompleted);
       addOrderToUser(checkoutSessionCompleted);
