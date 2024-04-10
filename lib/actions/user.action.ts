@@ -34,10 +34,11 @@ export async function addOrderToUser(orders: any) {
   try {
     await connect();
     const doc = await User.findOne(filter);
+    console.log(doc);
     doc.orders.push(orders);
     doc.active = true;
     await doc.save();
-    console.log(doc);
+
     return JSON.parse(JSON.stringify(doc));
   } catch (error) {
     console.log(error);
