@@ -30,6 +30,9 @@ const UserSchema = new Schema({
   orders: {
     type: Array,
   },
+  active_user: {
+    type: Boolean,
+  },
 });
 
 const User = models?.User || model("User", UserSchema);

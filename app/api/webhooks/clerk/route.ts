@@ -68,6 +68,7 @@ export async function POST(req: Request) {
       lastName: last_name,
       photo: image_url,
       quiz_scores: [],
+      active: false,
     };
 
     console.log(user);

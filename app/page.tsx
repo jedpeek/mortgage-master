@@ -1,6 +1,7 @@
 import Quiz from "@/components/quiz";
 import { questions } from "@/questions";
 import { auth } from "@clerk/nextjs";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default function Home() {
@@ -30,6 +31,9 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>Welcom to Mortgage Master</h1>
+      <Link href="https://buy.stripe.com/test_bIY7w5cvufEFfAY9AA">
+        PURCHASE COURSE
+      </Link>
     </main>
   );
 }

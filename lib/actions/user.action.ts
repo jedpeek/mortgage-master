@@ -34,6 +34,7 @@ export async function addOrderToUser(order: any) {
     await connect();
     const doc = await User.findOne(filter);
     doc.orders.push(order);
+    doc.active = true;
     await doc.save();
 
     return JSON.parse(JSON.stringify(doc));

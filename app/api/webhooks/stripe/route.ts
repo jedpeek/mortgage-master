@@ -25,23 +25,14 @@ export async function POST(request: NextRequest) {
     case "checkout.session.async_payment_failed":
       const checkoutSessionAsyncPaymentFailed = event.data.object;
       break;
-    case "payment_intent.payment_failed":
-      const paymentIntentFailed = event.data.object;
-      console.log(paymentIntentFailed);
+    case "checkout.session.async_payment_succeeded":
+      const checkoutSessionAsyncPaymentSucceeded = event.data.object;
+
       break;
-    case "payment_intent.succeeded":
-      const paymentIntentSucceeded: any = event.data.object;
-      console.log(paymentIntentSucceeded);
-      addOrderToUser(paymentIntentSucceeded);
-      // const response1 = await db
-      //   .insert(OrderTable)
-      //   .values({
-      //     userId: checkoutSessionCompleted?.metadata.userId,
-      //     itemCount: 1,
-      //     total: checkoutSessionCompleted?.amount_total as any,
-      //     isComplete: true,
-      //   })
-      //   .returning();
+    case "checkout.session.completed":
+      const checkoutSessionCompleted: any = event.data.object;
+      console.log("WE DID IT: ", checkoutSessionCompleted);
+      addOrderToUser(checkoutSessionCompleted);
       break;
     default:
       console.log(`Unhandled event type ${event.type}`);
